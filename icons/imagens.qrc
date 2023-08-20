@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="imagens">
+    <file>imob.png</file>
+    <file>password.png</file>
+    <file>user.png</file>
+  </qresource>
+  <qresource prefix="newPrefix"/>
+</RCC>
