@@ -63,7 +63,7 @@ class MenuPrincipal(QMainWindow):
         self.ui.setupUi(self)
         self.nome_bd = nome_bd
         self.ui.lbl_userLogado.setText(f"Seja bem-vindo, {self.nome_bd}")
-        self.actionCadastrar_usuario.triggered.connect(self.cadastrar_usuario)
+        #self.actionCadastrar_usuario.triggered.connect(self.cadastrar_usuario)
 
         def cadastrar_usuario(self):
             cadastrar_dialog = cadastrarUsuario()
