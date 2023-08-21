@@ -15,14 +15,17 @@ Deve existir um campo para registro das Observações.
 # converter ui para py:  pyuic5 -x tela_principal.ui -o tela_principal.py
 # converter ui para py:  pyuic5 -x login.ui -o login.py
 # converter ui para py:  pyuic5 -x criar_usuario.ui -o criar_usuario.py
+# converter ui para py:  pyuic5 -x gerenciar_usuarios.ui -o gerenciar_usuarios.py
+# converter ui para py: pyuic5 -x alterar_senha_adm.ui -o alterar_senha_adm.py
 # pyrcc5 icons\\imagens.qrc -o imagens_rc.py
 # para abrir o pyqt coloca 'designer' no terminal
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QDialog, QMainWindow
 import sqlite3
 from login import Ui_Dialog as tela_login
-from tela_principal import Ui_MenuPrincipal
+from tela_principal import Ui_MainWindow
 from criar_usuario import Ui_Dialog
+from gerenciar_usuarios import Ui_gerenciarUsuarios
 import os, sys
 
 
@@ -40,16 +43,28 @@ def verificar_bd():
     cursor.execute('''CREATE TABLE IF NOT EXISTS tb_acessos (
                          email TEXT PRIMARY KEY,
                          nome TEXT NOT NULL,
+                         tipo_acesso TEXT NOT NULL,
                          senha TEXT NOT NULL
                      )''')
 
 
-    # cria um usuário inicial para poder testar a aplicação
+    # cria dois usuários iniciais para poder testar a aplicação
+    # usuario adm
     admin_email = "admin@phsn.com.br"
     admin_password = "admin1234"
     admin_nome = "Administrador"
+    tipo_acesso = "administrador"
 
-    cursor.execute("INSERT OR REPLACE INTO tb_acessos (email, nome, senha) VALUES (?, ?, ?)", (admin_email, admin_nome, admin_password))
+    cursor.execute("INSERT OR REPLACE INTO tb_acessos (email, nome, tipo_acesso, senha) VALUES (?, ?, ?,?)", (admin_email, admin_nome, tipo_acesso, admin_password))
+    # usuario padrao
+    admin_email = "user@phsn.com.br"
+    admin_password = "user1234"
+    admin_nome = "Usuário Padrão"
+    tipo_acesso = "usuario"
+
+    cursor.execute("INSERT OR REPLACE INTO tb_acessos (email, nome, tipo_acesso, senha) VALUES (?, ?, ?,?)",
+                   (admin_email, admin_nome, tipo_acesso, admin_password))
+
     # salva
     print("Banco de dados verificado com sucesso. Acessando informação!")
     conn.commit()
@@ -57,26 +72,71 @@ def verificar_bd():
 
 
 class MenuPrincipal(QMainWindow):
-    def __init__(self, nome_bd, *args, **argvs):
+    def __init__(self, nome_bd, tipo_acesso, *args, **argvs):
         super(MenuPrincipal, self).__init__(*args, **argvs)
-        self.ui = Ui_MenuPrincipal()
+        self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.nome_bd = nome_bd
+        self.tipo_acesso = tipo_acesso
         self.ui.lbl_userLogado.setText(f"Seja bem-vindo, {self.nome_bd}")
-        #self.actionCadastrar_usuario.triggered.connect(self.cadastrar_usuario)
+        self.ui.menu_Gerenciar_Usuarios.triggered.connect(self.gerenciar_usuarios)
 
-        def cadastrar_usuario(self):
-            cadastrar_dialog = cadastrarUsuario()
-            cadastrar_dialog.exec_()
+    def gerenciar_usuarios(self):
+        #self.hide()
+        #gerenciar_dialog = gerenciarUsuarios()
+        #gerenciar_dialog.exec_()
+
+        self.hide()  # Hide the login window
+        self.gerenciar_users = gerenciarUsuarios(self.nome_bd, self.tipo_acesso)
+        self.gerenciar_users.show()
+
+
+
+class gerenciarUsuarios(QDialog):
+    def __init__(self, nome_bd, tipo_acesso, *args, **argvs):
+        super(gerenciarUsuarios, self).__init__(*args, **argvs)
+        self.ui = Ui_gerenciarUsuarios()
+        self.ui.setupUi(self)
+        self.nome_bd = nome_bd
+        self.tipo_acesso = tipo_acesso
+
+        self.ui.btn_addUsuario.clicked.connect(self.add_usuarios)
+
+        if self.tipo_acesso != "administrador":
+            #Bloqueia a deleção de usuários
+            self.ui.lview_usuarios.setEnabled(False)
+
+            # Bloqueia a criação de usuários
+            self.ui.btn_addUsuario.setEnabled(False)
+
+            #Bloqueia a remoção de usuários
+            self.ui.btn_removerUsuario.setEnabled(False)
+
+        else:
+            #Se for adm, carrega a lista de usuarios
+            lista_usuarios = cosultar_usuarios()
+            for usuario in lista_usuarios:
+                print(usuario[0])
+
+    def add_usuarios(self):
+        self.hide()  # Hide the login window
+        self.menu_cadastro = cadastrarUsuario(self.nome_bd, self.tipo_acesso)
+        self.menu_cadastro.show()
+
+
+
 
 
 
 
 class cadastrarUsuario(QDialog):
-    def __init__(self, *args, **argvs):
+    def __init__(self, nome_bd, tipo_acesso, *args, **argvs):
         super(cadastrarUsuario, self).__init__(*args, **argvs)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.nome_bd = nome_bd
+        self.tipo_acesso = tipo_acesso
+        self.ui.cbox_tipoAcesso.addItems(["administrador", "usuario"])
 
         #add uma funçãop ao botão
         self.ui.btn_criar_usuario.clicked.connect(self.criar_usuario)
@@ -93,6 +153,10 @@ class cadastrarUsuario(QDialog):
         input_senha = self.ui.tbox_senha.text()
         input_conf_senha = self.ui.tbox_confirma_senha.text()
         input_email = self.ui.tbox_email.text()
+        input_acesso = self.ui.cbox_tipoAcesso.currentText()
+
+
+
         if not input_nome:
             self.ui.lbl_status.setText(
                 "Você não pode criar um usuário sem nome")
@@ -112,7 +176,6 @@ class cadastrarUsuario(QDialog):
             consulta = f"SELECT nome FROM tb_acessos WHERE email= '{input_email}' "
             cursor.execute(consulta)
             usuario_encontrado = cursor.fetchone()
-            print(f'Resultado: {usuario_encontrado}')
             if usuario_encontrado:
 
                 self.ui.lbl_status.setText(f'Já existe um usuário cadastrado para o email {input_email}')
@@ -121,12 +184,10 @@ class cadastrarUsuario(QDialog):
             else:
 
 
-                #cursor.execute("INSERT OR REPLACE INTO tb_acessos (email, nome, senha) VALUES (?, ?, ?)",
-                #               (input_email, input_nome, input_senha))
-                #conn.commit()
-
-                print('Usuário criado com sucesso!')
-                self.ui.lbl_status.setText("Usuario criado com sucesso")
+                cursor.execute("INSERT INTO tb_acessos (email, nome, tipo_acesso, senha) VALUES (?, ?, ?,?)",
+                               (input_email, input_nome, input_acesso, input_senha))
+                conn.commit()
+                self.ui.lbl_status.setText(f"Usuário criado com sucesso. Permissão nível: {input_acesso}")
                 #Limpa os campos para uma nova insercao
 
                 self.ui.tbox_name.clear()
@@ -141,6 +202,7 @@ class login(QDialog):
         self.ui = tela_login()
         self.ui.setupUi(self)
         self.nome_bd = None
+        self.tipo_acesso = None
         #add uma funçãop ao botão
         self.ui.btn_login.clicked.connect(self.validar_usuario)
         self.ui.btn_sair.clicked.connect(self.sair)
@@ -166,7 +228,9 @@ class login(QDialog):
 
             email_bd = usuario_encontrado[0]
             nome_bd = usuario_encontrado[1]
-            senha_bd = usuario_encontrado[2]
+            tipo_acesso = usuario_encontrado[2]
+            senha_bd = usuario_encontrado[3]
+
 
             if input_senha != senha_bd:
                 self.ui.lbl_status_login.setText(f'Senha inválida.')
@@ -174,6 +238,7 @@ class login(QDialog):
             else:
                 # se a senha estiver ok, mostra a tela principal
                 self.nome_bd = nome_bd
+                self.tipo_acesso = tipo_acesso
                 self.abrir_tela_principal()
         else:
             self.ui.lbl_status_login.setText(f'Não existe um usuário cadastrado para este e-mail.\nContacte o administrador.')
@@ -181,7 +246,7 @@ class login(QDialog):
 
     def abrir_tela_principal(self):
         self.hide()  # Hide the login window
-        self.menu_inicial = MenuPrincipal(self.nome_bd)
+        self.menu_inicial = MenuPrincipal(self.nome_bd, self.tipo_acesso)
         self.menu_inicial.show()
 
 
@@ -191,7 +256,25 @@ class login(QDialog):
         print('Saindo da aplicação...')
         sys.exit()
 
+def cosultar_usuarios():
 
+    conn, cursor = conexao()
+    consulta = f"SELECT * FROM tb_acessos"
+    cursor.execute(consulta)
+    lista_usuarios = cursor.fetchall()
+    conn.commit()
+    conn.close()
+
+    return lista_usuarios
+
+
+def apagar_tabela(nome_tabela):
+    conn, cursor = conexao()
+    consulta = f"DROP TABLE IF EXISTS {nome_tabela}"
+    print(f'Tabela {nome_tabela} apagada com sucesso!')
+    cursor.execute(consulta)
+    conn.commit()
+    conn.close()
 
 
 def main():
@@ -202,6 +285,8 @@ def main():
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
+    #apagar_tabela("tb_acessos")
     verificar_bd()
+    #cosultar_usuarios("tb_acessos")
     main()
 

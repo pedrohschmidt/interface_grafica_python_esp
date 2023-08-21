@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MenuPrincipal(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(795, 384)
@@ -30,31 +30,26 @@ class Ui_MenuPrincipal(object):
         self.menubar.setObjectName("menubar")
         self.menu_Gerenciar_Usuarios = QtWidgets.QMenu(self.menubar)
         self.menu_Gerenciar_Usuarios.setObjectName("menu_Gerenciar_Usuarios")
-        self.menuGerenciar_Usuarios_2 = QtWidgets.QMenu(self.menu_Gerenciar_Usuarios)
-        self.menuGerenciar_Usuarios_2.setObjectName("menuGerenciar_Usuarios_2")
         self.menuImoveis = QtWidgets.QMenu(self.menubar)
         self.menuImoveis.setObjectName("menuImoveis")
         MainWindow.setMenuBar(self.menubar)
-        self.actionGerenciar_Usuarios = QtWidgets.QAction(MainWindow)
-        self.actionGerenciar_Usuarios.setObjectName("actionGerenciar_Usu_rios")
+        self.actionGerenciar_Usu_rios = QtWidgets.QAction(MainWindow)
+        self.actionGerenciar_Usu_rios.setObjectName("actionGerenciar_Usu_rios")
         self.actionCadastrar_usuario = QtWidgets.QAction(MainWindow)
         self.actionCadastrar_usuario.setObjectName("actionCadastrar_usuario")
         self.actionDeletar_Usuario = QtWidgets.QAction(MainWindow)
         self.actionDeletar_Usuario.setObjectName("actionDeletar_Usuario")
         self.actionAlterar_senha = QtWidgets.QAction(MainWindow)
         self.actionAlterar_senha.setObjectName("actionAlterar_senha")
-        self.actionBuscar_imovel = QtWidgets.QAction(MainWindow)
-        self.actionBuscar_imovel.setObjectName("actionBuscar_im_vel")
-        self.actionCadastrar_Imovel = QtWidgets.QAction(MainWindow)
-        self.actionCadastrar_Imovel.setObjectName("actionCadastrar_Im_vel")
-        self.menuGerenciar_Usuarios_2.addAction(self.actionCadastrar_usuario)
-        self.menuGerenciar_Usuarios_2.addSeparator()
-        self.menuGerenciar_Usuarios_2.addAction(self.actionDeletar_Usuario)
-        self.menuGerenciar_Usuarios_2.addSeparator()
-        self.menuGerenciar_Usuarios_2.addAction(self.actionAlterar_senha)
-        self.menuGerenciar_Usuarios_2.addSeparator()
+        self.actionBuscar_im_vel = QtWidgets.QAction(MainWindow)
+        self.actionBuscar_im_vel.setObjectName("actionBuscar_im_vel")
+        self.actionCadastrar_Im_vel = QtWidgets.QAction(MainWindow)
+        self.actionCadastrar_Im_vel.setObjectName("actionCadastrar_Im_vel")
+        self.actionGerenciar_Usu_rios_2 = QtWidgets.QAction(MainWindow)
+        self.actionGerenciar_Usu_rios_2.setObjectName("actionGerenciar_Usu_rios_2")
         self.menu_Gerenciar_Usuarios.addSeparator()
-        self.menu_Gerenciar_Usuarios.addAction(self.menuGerenciar_Usuarios_2.menuAction())
+        self.menu_Gerenciar_Usuarios.addAction(self.actionGerenciar_Usu_rios_2)
+        self.menu_Gerenciar_Usuarios.addSeparator()
         self.menubar.addAction(self.menu_Gerenciar_Usuarios.menuAction())
         self.menubar.addAction(self.menuImoveis.menuAction())
 
@@ -65,14 +60,14 @@ class Ui_MenuPrincipal(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.menu_Gerenciar_Usuarios.setTitle(_translate("MainWindow", "Configurações"))
-        self.menuGerenciar_Usuarios_2.setTitle(_translate("MainWindow", "Gerenciar Usuários"))
         self.menuImoveis.setTitle(_translate("MainWindow", "Imóveis"))
-        self.actionGerenciar_Usuarios.setText(_translate("MainWindow", "Gerenciar Usuários"))
+        self.actionGerenciar_Usu_rios.setText(_translate("MainWindow", "Gerenciar Usuários"))
         self.actionCadastrar_usuario.setText(_translate("MainWindow", "Cadastrar novo usuário"))
         self.actionDeletar_Usuario.setText(_translate("MainWindow", "Deletar Usuário"))
         self.actionAlterar_senha.setText(_translate("MainWindow", "Alterar senha"))
-        self.actionBuscar_imovel.setText(_translate("MainWindow", "Buscar imóvel"))
-        self.actionCadastrar_Imovel.setText(_translate("MainWindow", "Cadastrar Imóvel"))
+        self.actionBuscar_im_vel.setText(_translate("MainWindow", "Buscar imóvel"))
+        self.actionCadastrar_Im_vel.setText(_translate("MainWindow", "Cadastrar Imóvel"))
+        self.actionGerenciar_Usu_rios_2.setText(_translate("MainWindow", "Gerenciar Usuários"))
 import imagens_rc
 
 
@@ -80,7 +75,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MenuPrincipal()
+    ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
