@@ -12,3 +12,9 @@ O objetivo da atividade é desenvolver uma aplicação que respeite os seguintes
 - Deve haver armazenamento do Preço, porém você poderá optar por permitir que o usuário o armazene nas características do imóvel ou criar um campo exclusivo.
 - O mesmo caso acima serve para Condições. Você pode criar um campo de texto para preenchimento ou deixar que o usuário registre no campo das características do imóvel.
 - Deve existir um campo para registro das Observações.
+
+O que eu fiz:
+- Acesso através de login e senha, com mensagens para usuário inexistente, senha inválida, etc. Buscando as credenciais de acesso no bd para validação.
+- Sistema de gerenciamento de cadastros com dois níveis de acesso: administrador e usuário comum
+  - Adminstradores: Conseguem atualizar cadastro de outros usuários (nome, senha, tipo de acesso), incluindo outros administadores. Assim como adicionar ou remover usuários (comuns ou adm) da aplicação.
+  - Usuários comuns: Só conseguem alterar o próprio acesso.
