@@ -24,6 +24,7 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="705f7671-c719-4529-bb99-eb15fea792de" dataset="PHSN_IMOBILIARIA.tb_acessos" active-filter-id="" />
+    <filter-actions connection-id="705f7671-c719-4529-bb99-eb15fea792de" dataset="PHSN_IMOBILIARIA.tb_imoveis" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
