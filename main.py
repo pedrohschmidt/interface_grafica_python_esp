@@ -18,6 +18,7 @@ Deve existir um campo para registro das Observações.
 # converter ui para py:  pyuic5 -x gerenciar_usuarios.ui -o gerenciar_usuarios.py
 # converter ui para py: pyuic5 -x alterar_senha_adm.ui -o alterar_senha_adm.py
 # converter ui para py: pyuic5 -x cadastrar_imovel.ui -o cadastrar_imovel.py
+# converter ui para py: pyuic5 -x sobre.ui -o sobre.py
 
 # pyrcc5 icons\\imagens.qrc -o imagens_rc.py
 # para abrir o pyqt coloca 'designer' no terminal
@@ -30,6 +31,7 @@ from criar_usuario import Ui_Dialog
 from atualizar_usuario import Ui_Atualizar_usuario
 from gerenciar_usuarios import Ui_gerenciarUsuarios
 from cadastrar_imovel import Ui_Cadastrar_Imovel
+from sobre import Ui_Sobre
 import os, sys
 import brazilcep
 from brazilcep.exceptions import CEPNotFound, BlockedByFlood
@@ -141,7 +143,13 @@ class MenuPrincipal(QMainWindow):
         self.ui.lbl_userLogado.setText(f"Seja bem-vindo, {self.nome_bd}")
         self.ui.menu_Gerenciar_Usuarios.triggered.connect(self.gerenciar_usuarios)
         self.ui.actionCadastrar_Imovel.triggered.connect(self.cadastrar_imovel)
+        self.ui.actionSobre.triggered.connect(self.sobre)
 
+    def sobre(self):
+        print("sobre")
+        self.hide()  # Hide the login window
+        self.menu_sobre = sobre(self.nome_bd, self.tipo_acesso, self.email_acesso)
+        self.menu_sobre.show()
     def cadastrar_imovel(self):
         self.hide()  # Hide the login window
         self.cadastrar_imoveis = cadastrarImovel(self.nome_bd, self.tipo_acesso, self.email_acesso)
@@ -254,6 +262,25 @@ class gerenciarUsuarios(QDialog):
         self.menu_cadastro = cadastrarUsuario(self.nome_bd, self.tipo_acesso, self.email_acesso)
         self.menu_cadastro.show()
 
+class sobre(QDialog):
+    def __init__(self, nome_bd, tipo_acesso, email_acesso, *args, **argvs):
+        super(sobre, self).__init__(*args, **argvs)
+        self.ui = Ui_Sobre()
+        self.ui.setupUi(self)
+        self.nome_bd = nome_bd
+        self.tipo_acesso = tipo_acesso
+        self.email_acesso = email_acesso
+        self.ui.btn_voltar.clicked.connect(self.voltar)
+
+        with open('README.md', 'r', encoding='utf-8') as file:
+            readme_content = file.read()
+            self.ui.tbrowzer_Sobre.setHtml(readme_content)
+
+
+    def voltar(self):
+        self.hide()  # Hide the login window
+        self.menu_inicial = MenuPrincipal(self.nome_bd, self.tipo_acesso, self.email_acesso)
+        self.menu_inicial.show()
 
 class cadastrarImovel(QDialog):
     def __init__(self, nome_bd, tipo_acesso, email_acesso, *args, **argvs):
@@ -268,7 +295,10 @@ class cadastrarImovel(QDialog):
         self.ui.cbox_idade_imovel.addItems(["EM CONSTRUÇÃO", "BREVE LANÇAMENTO", "ATÉ 5 ANOS", "ATÉ 10 ANOS", "ATÉ 20 ANOS", "ATÉ 50 ANOS", "MAIS DE 50 ANOS"])
         self.ui.btn_cadastrar.clicked.connect(self.inserir_imovel)
         self.ui.btn_buscarCEP.clicked.connect(self.buscar_cep)
-
+    def voltar(self):
+        self.hide()  # Hide the login window
+        self.menu_inicial = MenuPrincipal(self.nome_bd, self.tipo_acesso, self.email_acesso)
+        self.menu_inicial.show()
     def buscar_cep(self):
         cep = self.ui.tbox_cep.text()
 
