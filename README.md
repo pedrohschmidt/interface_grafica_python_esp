@@ -15,7 +15,7 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 * O mesmo caso acima serve para Condições. Você pode criar um campo de texto para preenchimento ou deixar que o usuário registre no campo das características do imóvel.
 * Deve existir um campo para registro das Observações.
 
-<H2>O que foi feito:</H2>
+<h2>O que foi feito:</h2>
 * Acesso através de login e senha, com mensagens para usuário inexistente, senha inválida, etc. Buscando as credenciais de acesso no bd para validação.
 * Criação de dois usuários de forma automática, para que seja possível testar a aplicação (em uma sutuação normal este código seria removido da aplicação)
 * Sistema de gerenciamento de cadastros com dois níveis de acesso: administrador e usuário comum
