@@ -25,3 +25,4 @@ O que eu fiz:
   - Uso de checkboxes para facilitar a definição de algumas características como: possui churrasqueiras, aceita pet, garagem coberta, quadra poliesprotiva, portaria 24h, etc...
   - Buscador de CEP usando a biblioteca brazilcep, mas ela contantemente dá o erro de BlockedByFlood, que, até onde entendi, é um erro devido a uma quantidade grande de consultas em um curto espaço de tempo
   - Uso de comboboxes e máscaras de entrada para facilitar e padronizar a inserção de dados
+  - Validação de dados de acordo com o tipo do imóvel, antes de inserir no banco de dados. Por exemplo: Imóvel do tipo apartamento com 0 quartos, negociado para locação mas com valor de aluguel =0. Ele vai mostrar um pop-up avisando que não pode ter um apartamento com 0 quartos, e uma negociação de locação sem valor de aluguel, e só vai deixar inserir quando arrumar estes campos.
