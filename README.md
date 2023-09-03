@@ -1,5 +1,5 @@
 Atividade MAPA da matéria de INTERFACE GRÁFICA COM O USUÁRIO EM PYTHON ESP.
-
+<H2>O que foi pedido:</H2>
 O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastrar/consultar os imóveis com os quais ele trabalha. Sendo assim, é necessário que você desenvolva:
 - A interface gráfica da aplicação
 - A tabela do banco que irá receber os dados
@@ -16,7 +16,7 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 - O mesmo caso acima serve para Condições. Você pode criar um campo de texto para preenchimento ou deixar que o usuário registre no campo das características do imóvel.
 - Deve existir um campo para registro das Observações.
 
-O que eu fiz:
+<H2>O que foi feito:</H2>
 - Acesso através de login e senha, com mensagens para usuário inexistente, senha inválida, etc. Buscando as credenciais de acesso no bd para validação.
 - Sistema de gerenciamento de cadastros com dois níveis de acesso: administrador e usuário comum
   - Adminstradores: Conseguem atualizar cadastro de outros usuários (nome, senha, tipo de acesso), incluindo outros administadores. Assim como adicionar ou remover usuários (comuns ou adm) da aplicação.
