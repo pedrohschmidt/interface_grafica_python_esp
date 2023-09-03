@@ -1,6 +1,9 @@
 Atividade MAPA da matéria de INTERFACE GRÁFICA COM O USUÁRIO EM PYTHON ESP.
 
-O objetivo da atividade é desenvolver uma aplicação que respeite os seguintes requisitos:
+O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastrar/consultar os imóveis com os quais ele trabalha. Sendo assim, é necessário que você desenvolva:
+- A interface gráfica da aplicação
+- A tabela do banco que irá receber os dados
+- A programação para armazenar os dados
 
 - O sistema deverá permitir a seleção do Tipo de negociação para o imóvel: Venda, Locação, Venda/Locação
 - Deve haver um local para seleção do status: Disponível, Locado, Vendido, À liberar
@@ -18,3 +21,7 @@ O que eu fiz:
 - Sistema de gerenciamento de cadastros com dois níveis de acesso: administrador e usuário comum
   - Adminstradores: Conseguem atualizar cadastro de outros usuários (nome, senha, tipo de acesso), incluindo outros administadores. Assim como adicionar ou remover usuários (comuns ou adm) da aplicação.
   - Usuários comuns: Só conseguem alterar o próprio acesso.
+- Tela de cadastro de imóveis
+  - Uso de checkboxes para facilitar a definição de algumas características como: possui churrasqueiras, aceita pet, garagem coberta, quadra poliesprotiva, portaria 24h, etc...
+  - Buscador de CEP usando a biblioteca brazilcep, mas ela contantemente dá o erro de BlockedByFlood, que, até onde entendi, é um erro devido a uma quantidade grande de consultas em um curto espaço de tempo
+  - Uso de comboboxes e máscaras de entrada para facilitar e padronizar a inserção de dados
