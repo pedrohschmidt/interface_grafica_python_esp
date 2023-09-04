@@ -32,14 +32,14 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 </ol>
 </ol>
 <h3>Gestão de imóveis:</h3>
-<h2>Cadastro de imóveis</h2>
+<h4>Cadastro de imóveis</h4>
 <ol>
 <li> Uso de checkboxes para facilitar a definição de algumas características como: possui churrasqueiras, aceita pet, garagem coberta, quadra poliesprotiva, portaria 24h, etc...</li>
 <li>Buscador de CEP usando a biblioteca brazilcep, mas ela contantemente dá o erro de BlockedByFlood, que, até onde entendi, é um erro devido a uma quantidade grande de consultas em um curto espaço de tempo</li>
 <li>Uso de comboboxes e máscaras de entrada para facilitar e padronizar a inserção de dados</li>
 <li>Validação de dados de acordo com o tipo do imóvel, antes de inserir no banco de dados. Por exemplo: Imóvel do tipo apartamento com 0 quartos, negociado para locação mas com valor de aluguel =0. Ele vai mostrar um pop-up avisando que não pode ter um apartamento com 0 quartos, e uma negociação de locação sem valor de aluguel, e só vai deixar inserir quando arrumar estes campos.</li>
 </ol>
-<h2>Busca de imóveis</h2>
+<h4>Busca de imóveis</h4>
 <ol>
 <li>Filtro dinâmico de imóveis, atualizado automaticamente a medida que se alteram os filtros;</li>
 <li></li>
