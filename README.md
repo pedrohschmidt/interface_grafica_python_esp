@@ -1,7 +1,7 @@
 Esta aplicação refere-se a atividade MAPA da matéria de INTERFACE GRÁFICA COM O USUÁRIO EM PYTHON ESP.
 Desenvolvida pelo aluno: <b>Pedro Henrique Schmidt do Nasicmento</b>
 <H2>Informações relevantes:</H2>
-<p>Infelizmente não tive tempo de fazer tudo o que gostaria, então a aplicação ficou um pouco mais simples do que eu planejei, mas todas as funções pedidas, foram atendidas.</p>
+<p>Infelizmente não tive tempo de fazer tudo o que gostaria, então a aplicação ficou um pouco mais simples do que eu planejei, mas quase todos os requisitos foram atendidos. Ficou pendente incluir o status do imóvel, mas foi por falta de tempo. Você vai ver que usei informações de forma mais complexa que o status demandaria, ficando claro que não foi falta de conhecimento ou desatenção, mas pura falta de tempo. Não consegui ter tempo de fazer tudo devido ao meu emprego. Estamos migrando de software, e isso  tem demandado muito nos últimos meses.</p>
 <p>Você vai perceber que tem uma função 'validar_bd'sendo executada no início da aplicação que tem dados confidenciais, de logind e senha, e a isnerçào de alguns imóveis também. Esta rotina, na prática, não existiria. Só deixei ali para que fosse possível de você testar a aplicação já com um usuário e alguns imóveis cadastrados.</p>
 <h4>Você pode usar estes dois usuários para teste:</h4>
 <h5>Administrador</h5>
