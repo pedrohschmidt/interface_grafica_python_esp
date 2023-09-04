@@ -792,9 +792,9 @@ def apagar_tabela(nome_tabela):
 
 def main():
     app = QApplication(sys.argv)
-    #window = login()
+    window = login()
     #window = cadastrarUsuario('admin@phsn.com.br', 'administrador','admin@phsn.com.br')
-    window = MenuPrincipal('admin@phsn.com.br', 'administrador', 'admin@phsn.com.br')
+    #window = MenuPrincipal('admin@phsn.com.br', 'administrador', 'admin@phsn.com.br')
 
     window.show()
     sys.exit(app.exec_())

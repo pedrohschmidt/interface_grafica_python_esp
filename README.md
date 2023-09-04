@@ -1,5 +1,15 @@
 Esta aplicação refere-se a atividade MAPA da matéria de INTERFACE GRÁFICA COM O USUÁRIO EM PYTHON ESP.
 Desenvolvida pelo aluno: <b>Pedro Henrique Schmidt do Nasicmento</b>
+<H2>Informações relevantes:</H2>
+<p>Infelizmente não tive tempo de fazer tudo o que gostaria, então a aplicação ficou um pouco mais simples do que eu planejei, mas todas as funções pedidas, foram atendidas.</p>
+<p>Você vai perceber que tem uma função 'validar_bd'sendo executada no início da aplicação que tem dados confidenciais, de logind e senha, e a isnerçào de alguns imóveis também. Esta rotina, na prática, não existiria. Só deixei ali para que fosse possível de você testar a aplicação já com um usuário e alguns imóveis cadastrados.</p>
+<h4>Você pode usar estes dois usuários para teste:</h4>
+<h5>Administrador</h5>
+        <p>usuário = "admin@phsn.com.br"</p>
+        <p>senha = "admin1234"</p>
+<h5>Usuário padrão</h5>
+        <p>usuário = "user@phsn.com.br"</p>
+        <p>senha = "user1234"</p>
 <H2>O que foi pedido:</H2>
 O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastrar/consultar os imóveis com os quais ele trabalha. Sendo assim, é necessário que você desenvolva:
 <ol>
@@ -25,10 +35,10 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 <ol>
 <li>Acesso através de login e senha, com mensagens para usuário inexistente, senha inválida, etc. Buscando as credenciais de acesso no bd para validação.</li>
 <li>Criação de dois usuários de forma automática, para que seja possível testar a aplicação (em uma sutuação normal este código seria removido da aplicação)</li>
-<li>Sistema de gerenciamento de cadastros com dois níveis de acesso: administrador e usuário comum</li>
+<li>Sistema de gerenciamento de usuários cadastrados com dois níveis de acesso: administrador e usuário comum</li>
 <ol type="a">
-<li>Adminstradores: Conseguem atualizar cadastro de outros usuários (nome, senha, tipo de acesso), incluindo outros administadores. Assim como adicionar ou remover usuários (comuns ou adm) da aplicação.</li>
-<li> Usuários comuns: Só conseguem alterar o próprio acesso.</li>
+<li>Adminstradores: Conseguem atualizar cadastro de outros usuários (nome, senha, tipo de acesso), incluindo outros administadores. Assim como adicionar ou remover usuários (comuns ou adm) da aplicação. Por este motivo, não é possível eliminar todos os administradores, senão ninguém poderia add novos usuários.</li>
+<li> Usuários comuns: Só conseguem alterar o próprio acesso (senha, principalmente).</li>
 </ol>
 </ol>
 <h3>Gestão de imóveis:</h3>
@@ -42,11 +52,10 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 <h4>Busca de imóveis</h4>
 <ol>
 <li>Filtro dinâmico de imóveis, atualizado automaticamente a medida que se alteram os filtros;</li>
-<li></li>
 </ol>
 <h3>Pendente de desenvolvimento:</h3>
 <ol>
-<li>Trazer todos os detalhes do imóvel conforme for selecionado na tabela (duplo-clique)</li>
-<li>Lista de contatos vinculada ao imóvel</li>
-<li>Adicionar imagens ao cadastro de imóveis</li>
+<li>Trazer todos os detalhes do imóvel conforme for selecionado na tabela (duplo-clique) - Deixei ele trazendo todas as informações na tabela principal, mas se fosse trazer as fotos teria que mudar. A ideia é que o usuário selecione qual imóvel quer ver, e a aplicação abra em uma nova janela somente os dados do imóvel selecionado. Por falta de tempo, vai ficar para uma outra oportunidade.</li>
+<li>Lista de contatos vinculada ao imóvel. Os dados do proprietário não foram inseridos na primeira versão, por não estar no escopo do software, mas seria interessante inserir uma tabela com os contatos e vincular com o imóvel usando foreignkey.</li>
+<li>Adicionar imagens ao cadastro de imóveis. Mesmo caso dos contatos do proprietário.</li>
 </ol>
