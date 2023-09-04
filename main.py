@@ -145,6 +145,11 @@ class MenuPrincipal(QMainWindow):
         self.ui.actionCadastrar_Imovel.triggered.connect(self.cadastrar_imovel)
         self.ui.actionSobre.triggered.connect(self.sobre)
         self.ui.actionBuscar_Imovel.triggered.connect(self.filtrar_imovel)
+        self.ui.actionSair.triggered.connect(self.sair)
+
+    def sair(self):
+        app = QApplication(sys.argv)
+        app.quit()
 
     def filtrar_imovel(self):
 
