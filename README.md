@@ -1,7 +1,6 @@
 Esta aplicação refere-se a atividade MAPA da matéria de INTERFACE GRÁFICA COM O USUÁRIO EM PYTHON ESP.
-Desenvolvida pelo aluno: <b>Pedro Henrique Schmidt do Nasicmento</b>
+Desenvolvida pelo aluno: <b>Pedro Nasicmento</b>
 <H2>Informações relevantes:</H2>
-<p>Infelizmente não tive tempo de fazer tudo o que gostaria, então a aplicação ficou um pouco mais simples do que eu planejei, mas quase todos os requisitos foram atendidos. Ficou pendente incluir o status do imóvel, mas foi por falta de tempo. Você vai ver que usei informações de forma mais complexa que o status demandaria, ficando claro que não foi falta de conhecimento ou desatenção, mas pura falta de tempo. Não consegui ter tempo de fazer tudo devido ao meu emprego. Estamos migrando de software, e isso  tem demandado muito nos últimos meses.</p>
 <p>Você vai perceber que tem uma função 'validar_bd'sendo executada no início da aplicação que tem dados confidenciais, de logind e senha, e a isnerçào de alguns imóveis também. Esta rotina, na prática, não existiria. Só deixei ali para que fosse possível de você testar a aplicação já com um usuário e alguns imóveis cadastrados.</p>
 <h4>Você pode usar estes dois usuários para teste:</h4>
 <h5>Administrador</h5>
@@ -20,7 +19,7 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 <h3>Requisitos:</h3>
 <ol>
 <li>O sistema deverá permitir a seleção do Tipo de negociação para o imóvel: Venda, Locação, Venda/Locação</li>
-<li>Deve haver um local para seleção do status: Disponível, Locado, Vendido, À liberar</li>
+<li>Deve haver um local para seleção do status: Disponível, Locado, Vendido, À liberar <b>***</b></li>
 <li>O campo identificação deve ser preenchido automaticamente pelo sistema.</li>
 <li>O endereço pode estar armazenado em um único campo ou separado em campos para armazenamento do número, complemento, CEP, Bairro e Estado</li>
 <li>O sistema deve permitir o cadastro de uma descrição curta para o imóvel. Essa descrição será usada nos anúncios</li>
@@ -55,6 +54,7 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 </ol>
 <h3>Pendente de desenvolvimento:</h3>
 <ol>
+<li>Adicionar status do imóvel</li>
 <li>Trazer todos os detalhes do imóvel conforme for selecionado na tabela (duplo-clique) - Deixei ele trazendo todas as informações na tabela principal, mas se fosse trazer as fotos teria que mudar. A ideia é que o usuário selecione qual imóvel quer ver, e a aplicação abra em uma nova janela somente os dados do imóvel selecionado. Por falta de tempo, vai ficar para uma outra oportunidade.</li>
 <li>Lista de contatos vinculada ao imóvel. Os dados do proprietário não foram inseridos na primeira versão, por não estar no escopo do software, mas seria interessante inserir uma tabela com os contatos e vincular com o imóvel usando foreignkey.</li>
 <li>Adicionar imagens ao cadastro de imóveis. Mesmo caso dos contatos do proprietário.</li>
