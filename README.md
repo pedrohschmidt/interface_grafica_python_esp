@@ -46,7 +46,7 @@ O Sr. Roberto é dono da Py Assessoria e solicitou uma aplicação para cadastra
 </ol>
 <h3>Pendente de desenvolvimento:</h3>
 <ol>
-<li>Trazer todos os detalhes do imóvel conforme for selecionado na tabela</li>
+<li>Trazer todos os detalhes do imóvel conforme for selecionado na tabela (duplo-clique)</li>
 <li>Lista de contatos vinculada ao imóvel</li>
 <li>Adicionar imagens ao cadastro de imóveis</li>
 </ol>

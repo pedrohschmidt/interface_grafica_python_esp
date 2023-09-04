@@ -451,7 +451,12 @@ class procurarImoveis(QDialog):
         self.ui.spin_quartos.valueChanged.connect(self.filtrar_imoveis)
         self.ui.btn_voltar.clicked.connect(self.voltar)
 
+        #define rotina para quando clicar duas vezes em um item
+        self.ui.tb_resultados.doubleClicked.connect(self.mostrar_detalhes)
 
+    def mostrar_detalhes(self, index):
+        selected_row = index.row()
+        print(self.model.data(self.model.index(selected_row, 0)))
     def voltar(self):
         self.hide()  # Hide the login window
         self.menu_inicial = MenuPrincipal(self.nome_bd, self.tipo_acesso, self.email_acesso)
@@ -513,10 +518,10 @@ class procurarImoveis(QDialog):
             print("Nenhum imóvel encontrado com estes parâmetros. Experimente mexer nos filtros!")
         else:
             # se encontrar resultados com o filtro desejado, exibe na tabela
-            colunas_resumidas = ['ID', 'TIPO_IMOVEL', 'QUARTOS', 'TIPO_NEGOCIACAO','IDADE_IMOVEL', 'ESTADO', 'CIDADE', 'BAIRRO', 'ENDERECO']
+            #colunas_resumidas = ['ID', 'TIPO_IMOVEL', 'QUARTOS', 'TIPO_NEGOCIACAO','IDADE_IMOVEL', 'ESTADO', 'CIDADE', 'BAIRRO', 'ENDERECO']
 
-            df_resumido = df_filtro[colunas_resumidas]
-
+            #df_resumido = df_filtro[colunas_resumidas]
+            df_resumido = df_filtro
             model = QStandardItemModel(self)
             model.setHorizontalHeaderLabels(df_resumido.columns)
             # Preencher a tabela com os dados do DataFrame
@@ -527,6 +532,7 @@ class procurarImoveis(QDialog):
             self.ui.tb_resultados.setModel(model)
             # corrige o tamanho das colunas de acordo com o conteúdo
             self.ui.tb_resultados.resizeColumnsToContents()
+
 
 class atualizarUsuario(QDialog):
 
